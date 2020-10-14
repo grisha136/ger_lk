@@ -23,6 +23,51 @@ const Profile = ()=>{
     </div>
 }
 
+const Settings = ()=> {
+    return <div className="row">
+        <div className="col-2">
+            <p>Имя: Виктор</p>
+            <p>Фамилия: Иванов</p>
+            <p>Email: ivanov@mail.com</p>
+            <p>ID: 1</p>
+        </div>
+    </div>
+}
+
+const Users = ()=> {
+    return <div className="row">
+        <div className="col-2">
+            <table className="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Имя Фамилия</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Виктор Иванов</td>
+                    <td>ivanov@mail.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Иван Иванов</td>
+                    <td>ivanov@mail.ru</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Виктор Сергеев</td>
+                    <td>sergeev@mail.com</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
 function App() {
   return (
        <div className="container-fluid">
@@ -33,35 +78,8 @@ function App() {
            </div>
            <div className="col-9">
               <Route path ="/profile" render={()=>{return <Profile/>}}/>
-              <Route path ="/settings" render={()=>{return <settings/>}}/>
-              <Route path ="/users" render={()=>{return <users/>}}/>
-               <table className="table">
-                   <thead>
-                   <tr>
-                       <th scope="col">ID</th>
-                       <th scope="col">Имя Фамилия</th>
-                       <th scope="col">Email</th>
-                   </tr>
-                   </thead>
-                   <tbody>
-                   <tr>
-                       <th scope="row">1</th>
-                       <td>Виктор Иванов</td>
-                       <td>ivanov@mail.com</td>
-                   </tr>
-                   <tr>
-                       <th scope="row">2</th>
-                       <td>Иван Иванов</td>
-                       <td>ivanov@mail.ru</td>
-                   </tr>
-                   <tr>
-                       <th scope="row">3</th>
-                       <td>Виктор Сергеев</td>
-                       <td>sergeev@mail.com</td>
-                       <td></td>
-                   </tr>
-                   </tbody>
-               </table>
+              <Route path ="/settings" render={()=>{return <Settings/>}}/>
+              <Route path ="/users" render={()=>{return <Users/>}}/>
              </div>
            </div>
          </BrowserRouter>
