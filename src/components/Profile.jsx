@@ -9,11 +9,17 @@ export class Profile extends React.Component{
     }
 
     componentDidMount() {
-        fetch( "http://derk34.beget.tech/getUserJSON")
-           .then(response=>response.text())
-            .then(info=>{
+        const formData = new FormData();
+        let userId = window.location.pathname.split("/")[2]
+        formData.append("userId",userId);
+        fetch( "http://derk34.beget.tech/getUser",{
+            method: "POST",
+            body: formData
+        })
+           .then(response=>response.json())
+            .then(user=>{
                 this.setState({
-                    userName: info
+                    userName: user.name+" "+user.lastname
                 })
             });
     }
