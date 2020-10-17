@@ -1,6 +1,34 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
+
+const Tr = (props)=>{
+    return <tr>
+        <th scope="row">{props.index}</th>
+        <td><NavLink to={"user/"+ props.userId}> {props.name} {props.lastname}</NavLink></td>
+        <td>{props.email}</td>
+    </tr>
+}
 
 export class Users extends React.Component{
+      constructor() {
+          super();
+          this.state = {
+              users: []
+          }
+      }
+
+    componentDidMount() {
+        fetch("http://derk34.beget.tech/getUsers")
+            .then(response=>response.json())
+            .then(users=>{
+                let usersArray;
+                usersArray = users.map((user,index)=>{
+                    return <Tr userId = {user.id} name = {user.name} lastname = {user.lastname} index={index+1} email={user.email}/>;
+                })
+                this.setState({users:usersArray});
+            })
+    }
+
     render(){
         return <div className="row">
             <div className="col-2">
@@ -13,25 +41,11 @@ export class Users extends React.Component{
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Виктор Иванов</td>
-                        <td>ivanov@mail.com</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Иван Иванов</td>
-                        <td>ivanov@mail.ru</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Виктор Сергеев</td>
-                        <td>sergeev@mail.com</td>
-                        <td></td>
-                    </tr>
+                      {this.state.users}
                     </tbody>
                 </table>
             </div>
         </div>
     }
 }
+    
